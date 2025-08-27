@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-xl font-semibold mb-4">新規追加</h2>
+
+<a href="{{ url_for('index') }}" class="inline-block mb-3 text-sm text-gray-500 hover:underline">← トップへ戻る</a>
+
+<form method="post" class="grid gap-3 max-w-lg">
+  {{ form.hidden_tag() }}
+
+  <label class="grid gap-1">
+    <span>サービス名</span>
+    {{ form.name(class_="rounded-xl border border-gray-200 px-3 py-2 bg-white") }}
+    {% for e in form.name.errors %}<p class="text-red-600 text-xs">{{ e }}</p>{% endfor %}
+  </label>
+
+  <div class="grid grid-cols-2 gap-2">
+    <label class="grid gap-1">
+      <span>金額</span>
+      {{ form.price(class_="rounded-xl border border-gray-200 px-3 py-2 bg-white") }}
+      {% for e in form.price.errors %}<p class="text-red-600 text-xs">{{ e }}</p>{% endfor %}
+    </label>
+    <label class="grid gap-1">
+      <span>通貨</span>
+      {{ form.currency(class_="rounded-xl border border-gray-200 px-3 py-2 bg-white") }}
+      {% for e in form.currency.errors %}<p class="text-red-600 text-xs">{{ e }}</p>{% endfor %}
+    </label>
+  </div>
+
+  <label class="grid gap-1">
+    <span>支払サイクル</span>
+    {{ form.cycle(class_="rounded-xl border border-gray-200 px-3 py-2 bg-white") }}
+    {% for e in form.cycle.errors %}<p class="text-red-600 text-xs">{{ e }}</p>{% endfor %}
+  </label>
+
+  <label class="grid gap-1">
+    <span>次回支払日</span>
+    {{ form.next_billing_date(class_="rounded-xl border border-gray-200 px-3 py-2 bg-white", type="date") }}
+    {% for e in form.next_billing_date.errors %}<p class="text-red-600 text-xs">{{ e }}</p>{% endfor %}
+  </label>
+
+  <div class="flex items-center gap-2">
+    {{ form.free_trial_only() }} <span>無料期間のみ（解約予定）</span>
+    {% for e in form.free_trial_only.errors %}<p class="text-red-600 text-xs">{{ e }}</p>{% endfor %}
+  </div>
+
+  <label class="grid gap-1">
+    <span>無料終了日（任意）</span>
+    {{ form.free_trial_until(class_="rounded-xl border border-gray-200 px-3 py-2 bg-white", type="date") }}
+    {% for e in form.free_trial_until.errors %}<p class="text-red-600 text-xs">{{ e }}</p>{% endfor %}
+  </label>
+
+  <label class="grid gap-1">
+    <span>メモ</span>
+    {{ form.notes(class_="rounded-xl border border-gray-200 px-3 py-2 bg-white") }}
+    {% for e in form.notes.errors %}<p class="text-red-600 text-xs">{{ e }}</p>{% endfor %}
+  </label>
+
+  {{ form.submit(class_="rounded-2xl px-4 py-2 bg-pink-500 text-white shadow hover:opacity-90") }}
+</form>
+{% endblock %}

@@ -1,0 +1,24 @@
+# --- Python / Flask ---
+__pycache__/
+*.py[cod]
+*.pyo
+
+# 仮想環境
+.venv/
+
+# 環境変数（秘密）
+.env
+
+# ローカルDB
+subs.db
+instance/subs.db
+*.sqlite
+*.sqlite3
+
+# Flaskのinstanceフォルダ（丸ごと除外したい場合）
+instance/
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+.vscode/

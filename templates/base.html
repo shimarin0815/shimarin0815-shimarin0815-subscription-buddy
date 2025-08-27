@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>サブスク管理くん</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="{{ url_for('static', filename='custom.js') }}"></script>
+</head>
+<body class="bg-gradient-to-b from-white to-pink-50 min-h-screen">
+  <header class="max-w-4xl mx-auto px-4 py-6 flex items-center justify-between">
+    <h1 class="text-3xl font-bold tracking-tight">
+      <a href="{{ url_for('index') }}" class="hover:opacity-80">サブスク管理くん</a>
+      <span class="ml-2 text-pink-500">♡</span>
+    </h1>
+    <nav class="flex items-center gap-2">
+      <a href="{{ url_for('index') }}" class="rounded-xl px-3 py-1.5 bg-gray-100 hover:bg-gray-200">ホーム</a>
+      <a href="{{ url_for('new') }}" class="rounded-2xl px-4 py-2 bg-pink-500 text-white shadow hover:opacity-90">＋ 新規追加</a>
+    </nav>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 pb-16">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="mb-4 space-y-2">
+          {% for m in messages %}
+          <div class="rounded-xl bg-emerald-50 text-emerald-700 px-4 py-2 shadow-sm">{{ m }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="text-center text-sm text-gray-400 pb-6">© {{ 2025 }} サブスク管理くん</footer>
+</body>
+</html>
